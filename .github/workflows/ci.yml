@@ -36,7 +36,7 @@ jobs:
       - name: Fetch Latest Weather
         env:
           WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
-          weather_CITY: ${{ secrets.city }}
+          CITY: ${{ secrets.city }}
         run: node fetchWeather.js
       - name: Commit weather data if changed
         run: |
