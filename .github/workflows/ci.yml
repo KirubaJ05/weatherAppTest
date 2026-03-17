@@ -1,0 +1,51 @@
+name: Weather Pipeline CI/CD (JS)
+
+on:
+  push: 
+  schedule:
+  #set to run every 2 hours
+    - cron:"0 */2 * * *"
+  workflow_dispatch:
+  #lets you manually run a workflow from github
+  permissions:
+  #needs write permissions to access json and csv file to autoupdate
+    contents: write
+  jobs:
+  # defines all workflows
+    test_and_fetch:
+    #specific name of the job
+      runs-on: ubuntu-latest
+      #list individual steps
+      steps:
+        - name: Checkout repo
+        #makes github repo available using a copy 
+          uses: actions/checkout@v4
+        - name: Use node.js
+          uses: actions/setup-node@v4
+          with:
+            node-version: "22"
+        - name: Cache node modules
+          # save and use files between workflow runs to make it faster and more efficient
+          uses: actions/cache@v3
+          with:
+            path: ~/.npm
+            # specifically installations creates unique key and only reuses if package-lock.json hasn't changed
+            key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+        - name: Install Dependencies
+          run: npm ci
+        - name: Fetch Latest Weather
+          env:
+            WEATHER_API_KEY: ${{ secrets.WEATHER_API_KEY }}
+            weather_CITY: ${{ secrets.city }}
+          run: node fetchWeather.js
+        - name: Commit weather data if changed
+          run: 
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+            git add data/weather.json data/weather_log.csv || true
+            git commit -m "ci:will update weather data" || echo "No changes to commit"
+            git push || echo "push failed or no changes"
+
+
+
+

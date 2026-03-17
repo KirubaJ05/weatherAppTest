@@ -5,7 +5,7 @@
   "main": "fetchWeather.js",
   "type": "module",
   "scripts": {
-    "test": "jest"
+    "test": "jest --watchAll --verbonse"
   },
   "keywords": [],
   "author": "",

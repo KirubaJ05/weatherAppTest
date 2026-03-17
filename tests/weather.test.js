@@ -7,25 +7,25 @@ const CSV_FILE = path.join(DATA_DIR,'weather_log.csv')
 
 describe('Weather Data Tests', () => {
     test('weather.json exists', () => {
-        expect(fs.existsSync(WEATHER_JSON).toBe(true))
+        expect(fs.existsSync(WEATHER_JSON)).toBe(true)
     })
     test('Weather.json has required keys', () => {
         const raw = fs.readFileSync(WEATHER_JSON,'utf8')
-        expect(raw.trim.length).toBeGreaterThan(0) //removes empty spaces from beginning or end of file using trim
+        expect(raw.trim().length).toBeGreaterThan(0) //removes empty spaces from beginning or end of file using trim
 
         const data = JSON.parse(raw)
         expect(data).toHaveProperty('main')
         expect(data).toHaveProperty('weather')
         expect(data.weather[0]).toHaveProperty('description')
-        expect(data).toHaveProperty('_last_updated_utc')
-        expect(new Date(data._last_updated_utc)).toISOString().toBe(data._last_updated_utc)
+        expect(data).toHaveProperty('last_updated_utc')
+        expect(new Date(data.last_updated_utc).toISOString()).toBe(data.last_updated_utc)
     })
     test('CSV file exists', () => {
-        const csvContent = fs.existsSync(CSV_FILE,'utf8')
+        const csvContent = fs.readFileSync(CSV_FILE,'utf8')
         const lines = csvContent.trim().split('\n')
         const header = lines[0].split(',')
 
-        expect(header).toEqual('timestamp','city','temperature','description')
+        expect(header).toEqual(['timestamp','city','temperature','description'])
         expect(lines.length).toBeGreaterThan(1)
         
         const firstDataRow = lines[1].split(',')
