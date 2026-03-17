@@ -22,7 +22,7 @@ const LOG_FILE = path.join(DATA_DIR,'weather_log.csv')
 //call API key from dot env
 export async function fetchWeather() {
     const apiKey = process.env.WEATHER_API_KEY
-    const city = process.env.city || 'London'
+    const city = process.env.CITY || 'London'
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
 
     try{
