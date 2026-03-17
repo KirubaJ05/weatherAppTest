@@ -39,7 +39,7 @@ jobs:
           weather_CITY: ${{ secrets.city }}
         run: node fetchWeather.js
       - name: Commit weather data if changed
-        run: 
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/weather.json data/weather_log.csv || true
