@@ -4,7 +4,7 @@ on:
   push: 
   schedule:
   #set to run every 2 hours
-    - cron:"0 */2 * * *"
+    - cron: "0 */2 * * *"
   workflow_dispatch:
   #lets you manually run a workflow from github
 permissions:
