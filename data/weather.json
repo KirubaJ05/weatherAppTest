@@ -5,32 +5,32 @@
   },
   "weather": [
     {
-      "id": 803,
-      "main": "Clouds",
-      "description": "broken clouds",
-      "icon": "04n"
+      "id": 701,
+      "main": "Mist",
+      "description": "mist",
+      "icon": "50n"
     }
   ],
   "base": "stations",
   "main": {
-    "temp": 9.4,
-    "feels_like": 8.92,
-    "temp_min": 8.77,
-    "temp_max": 10.04,
-    "pressure": 1029,
-    "humidity": 92,
-    "sea_level": 1029,
-    "grnd_level": 1019
+    "temp": 9.16,
+    "feels_like": 8.65,
+    "temp_min": 7.99,
+    "temp_max": 9.88,
+    "pressure": 1027,
+    "humidity": 94,
+    "sea_level": 1027,
+    "grnd_level": 1017
   },
   "visibility": 10000,
   "wind": {
     "speed": 1.54,
-    "deg": 340
+    "deg": 330
   },
   "clouds": {
-    "all": 75
+    "all": 100
   },
-  "dt": 1774996377,
+  "dt": 1775010825,
   "sys": {
     "type": 2,
     "id": 2012208,
@@ -42,5 +42,5 @@
   "id": 2988507,
   "name": "Paris",
   "cod": 200,
-  "last_updated_utc": "2026-03-31T22:35:49.970Z"
+  "last_updated_utc": "2026-04-01T02:42:47.205Z"
 }
